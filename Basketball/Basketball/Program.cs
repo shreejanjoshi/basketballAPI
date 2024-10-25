@@ -1,4 +1,6 @@
 
+using Basketball.Services;
+
 namespace Basketball
 {
     public class Program
@@ -13,6 +15,9 @@ namespace Basketball
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
+            builder.Services.AddSingleton<IBasketballClubService, BasketballClubService>();
+            builder.Services.AddSingleton<ICityService, ICityService>();
+            builder.Services.AddSingleton<ICountryService, ICountryService>();
 
             var app = builder.Build();
 
