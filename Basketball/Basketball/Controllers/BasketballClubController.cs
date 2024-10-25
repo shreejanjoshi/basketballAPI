@@ -1,12 +1,40 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Basketball.Models;
+using Basketball.Services;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Basketball.Controllers
 {
+    [ApiController]
+    [Route("api/[controller]")]
     public class BasketballClubController : Controller
     {
-        public IActionResult Index()
+        private readonly IBasketballClubService _basketballClubService;
+
+        public BasketballClubController(IBasketballClubService basketballClubService)
         {
-            return View();
+            _basketballClubService = basketballClubService;
+        }
+
+        // get all
+        [HttpGet]
+        public async Task<ActionResult<List<BasketballClub>>> GetAllBasketballClubs()
+        {
+            var basketballClubs = await _basketballClubService.GetAllBasketballClubs();
+            return Ok(basketballClubs);
+        }
+
+        // get by id
+        [HttpGet("{id}")]
+        public async Task<ActionResult<BasketballClub>> GetBasketballClub(int id)
+        {
+            var basketballClub = await _basketballClubService.GetBasketballClub(id);
+
+            if(basketballClub == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(basketballClub);
         }
     }
 }
