@@ -16,8 +16,8 @@ namespace Basketball
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
             builder.Services.AddSingleton<IBasketballClubService, BasketballClubService>();
-            builder.Services.AddSingleton<ICityService, ICityService>();
-            builder.Services.AddSingleton<ICountryService, ICountryService>();
+            builder.Services.AddSingleton<ICityService, CityService>();
+            builder.Services.AddSingleton<ICountryService, CountryService>();
 
             var app = builder.Build();
 
