@@ -36,5 +36,14 @@ namespace Basketball.Controllers
 
             return Ok(basketballClub);
         }
+
+        // post create
+        [HttpPost]
+        public async Task<ActionResult<BasketballClub>> CreateBasketballClub(BasketballClub basketballClub)
+        {
+            await _basketballClubService.CreateBasketballClub(basketballClub);
+
+            return CreatedAtAction(nameof(GetBasketballClub), new { id = basketballClub.Id}, basketballClub);
+        }
     }
 }
