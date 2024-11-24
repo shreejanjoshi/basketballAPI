@@ -20,5 +20,12 @@ namespace Basketball.Services
         {
             return Task.FromResult(AllCountries.FirstOrDefault(x => x.Id == id));
         }
+
+        // create country data
+        public Task CreateCountry(Country country)
+        {
+            AllCountries.Add(country);
+            return Task.CompletedTask;
+        }
     }
 }

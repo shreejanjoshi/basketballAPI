@@ -23,5 +23,12 @@ namespace Basketball.Services
         {
             return Task.FromResult(AllCities.FirstOrDefault(x => x.Id == id));
         }
+
+        // create city data
+        public Task CreateCity(City city)
+        {
+            AllCities.Add(city);
+            return Task.CompletedTask;
+        }
     }
 }

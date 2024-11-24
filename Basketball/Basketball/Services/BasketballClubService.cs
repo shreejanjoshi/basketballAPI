@@ -23,5 +23,12 @@ namespace Basketball.Services
         {
             return Task.FromResult(AllBasketballClubs.FirstOrDefault(x => x.Id == id));
         }
+
+        // create basketball club data
+        public Task CreateBasketballClub(BasketballClub basketballClub)
+        {
+            AllBasketballClubs.Add(basketballClub);
+            return Task.CompletedTask;
+        }
     }
 }
