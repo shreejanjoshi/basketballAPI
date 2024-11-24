@@ -41,6 +41,11 @@ namespace Basketball.Controllers
         [HttpPost]
         public async Task<ActionResult<City>> CreateBasketballClub(City city)
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
             await _cityService.CreateCity(city);
 
             return CreatedAtAction(nameof(GetCity), new { id = city.Id }, city);
