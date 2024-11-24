@@ -6,5 +6,6 @@ namespace Basketball.Services
     {
         Task<List<City>> GetAllCities();
         Task<City> GetCity(int id);
+        Task CreateCity(City city);
     }
 }

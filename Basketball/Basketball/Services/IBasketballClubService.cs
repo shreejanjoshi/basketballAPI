@@ -6,5 +6,6 @@ namespace Basketball.Services
     {
         Task<List<BasketballClub>> GetAllBasketballClubs();
         Task<BasketballClub> GetBasketballClub(int id);
+        Task CreateBasketballClub(BasketballClub basketballClub);
     }
 }

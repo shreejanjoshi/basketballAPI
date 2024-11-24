@@ -6,5 +6,6 @@ namespace Basketball.Services
     {
         Task<List<Country>> GetAllCountries();
         Task<Country> GetCountry(int id);
+        Task CreateCountry(Country country);
     }
 }
