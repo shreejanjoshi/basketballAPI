@@ -30,5 +30,29 @@ namespace Basketball.Services
             AllCities.Add(city);
             return Task.CompletedTask;
         }
+
+        // update
+        public Task<City?> UpdateCity(int id, City city)
+        {
+            var c = AllCities.FirstOrDefault(x => x.Id == id);
+            if (c != null)
+            {
+                c.Name = city.Name;
+                c.CountryId = city.CountryId;
+            }
+            return Task.FromResult(c);
+        }
+
+        // delete
+        public Task DeleteCity(int id)
+        {
+            var c = AllCities.FirstOrDefault(x => x.Id == id);
+            if (c != null)
+            {
+                AllCities.Remove(c);
+            }
+
+            return Task.CompletedTask;
+        }
     }
 }

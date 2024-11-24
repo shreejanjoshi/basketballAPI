@@ -30,5 +30,29 @@ namespace Basketball.Services
             AllBasketballClubs.Add(basketballClub);
             return Task.CompletedTask;
         }
+
+        // update 
+        public Task<BasketballClub?> UpdateBasketballClub(int id, BasketballClub basketballClub)
+        {
+            var c = AllBasketballClubs.FirstOrDefault(x => x.Id == id);
+            if (c != null)
+            {
+                c.Name = basketballClub.Name;
+                c.CityId = basketballClub.CityId;
+            }
+            return Task.FromResult(c);
+        }
+
+        // delete
+        public Task DeleteBasketballClub(int id)
+        {
+            var c = AllBasketballClubs.FirstOrDefault(x => x.Id == id);
+            if (c != null)
+            {
+                AllBasketballClubs.Remove(c);
+            }
+
+            return Task.CompletedTask;
+        }
     }
 }
