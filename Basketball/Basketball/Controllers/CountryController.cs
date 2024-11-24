@@ -45,5 +45,38 @@ namespace Basketball.Controllers
 
             return CreatedAtAction(nameof(GetCountry), new { id = country.Id }, country);
         }
+
+        // put update
+        [HttpPut("{id}")]
+        public async Task<ActionResult> UpdateCountry(int id, Country country)
+        {
+            if (id != country.Id)
+            {
+                return BadRequest();
+            }
+
+            var updatedCountry = await _countryService.UpdateCountry(id, country);
+
+            if (updatedCountry == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(updatedCountry);
+        }
+
+        // delete
+        [HttpDelete("{id}")]
+        public async Task<ActionResult> DeleteCountry(int id)
+        {
+            var country = await _countryService.GetCountry(id);
+            if (country == null)
+            {
+                return NotFound();
+            }
+
+            await _countryService.DeleteCountry(id);
+            return NoContent();
+        }
     }
 }

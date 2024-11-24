@@ -45,5 +45,38 @@ namespace Basketball.Controllers
 
             return CreatedAtAction(nameof(GetBasketballClub), new { id = basketballClub.Id}, basketballClub);
         }
+
+        // put update
+        [HttpPut("{id}")]
+        public async Task<ActionResult> UpdateBasketballClub(int id, BasketballClub basketballClub)
+        {
+            if(id != basketballClub.Id)
+            {
+                return BadRequest();
+            }
+
+            var updatedBasketballClub = await _basketballClubService.UpdateBasketballClub(id, basketballClub);
+
+            if(updatedBasketballClub == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(updatedBasketballClub);
+        }
+
+        // delete
+        [HttpDelete("{id}")] 
+        public async Task<ActionResult> DeleteBasketballClub(int id)
+        {
+            var basketballClub = await _basketballClubService.GetBasketballClub(id);
+            if (basketballClub == null)
+            {
+                return NotFound();
+            }
+
+            await _basketballClubService.DeleteBasketballClub(id);
+            return NoContent();
+        }
     }
 }
