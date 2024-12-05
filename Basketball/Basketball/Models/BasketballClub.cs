@@ -1,17 +1,21 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Basketball.Models
 {
     public class BasketballClub
     {
+        [Column("Id")]
+        [Key]
         public int Id { get; set; }
 
+        [Column(name: "Name", TypeName = "varchar(32)")]
         [Required(ErrorMessage = "Name is required.")]
-        [StringLength(100, ErrorMessage = "Name cannot exceed 100 characters.")]
         public string Name { get; set; }
 
+        [Column(name: "CityId", TypeName = "int")]
         [Required(ErrorMessage = "CityId is required.")]
-        [Range(1, int.MaxValue, ErrorMessage = "CityId must be a positive integer.")]
+        //[ForeignKey("City")]
         public int CityId { get; set; } 
     }
 }
