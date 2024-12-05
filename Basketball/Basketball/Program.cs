@@ -15,6 +15,16 @@ namespace Basketball
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
+
+            // for migartions
+            //builder.Services.AddDbContext<DataDbContext>(options =>
+            //{
+            //    var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+            //    var serverVersion = ServerVersion.AutoDetect(connectionString);
+
+            //    options.UseMySql(connectionString, serverVersion);
+            //});
+
             builder.Services.AddSingleton<IBasketballClubService, BasketballClubService>();
             builder.Services.AddSingleton<ICityService, CityService>();
             builder.Services.AddSingleton<ICountryService, CountryService>();

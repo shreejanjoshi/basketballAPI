@@ -12,5 +12,8 @@ namespace Basketball.Models
         [Column(name: "Name", TypeName = "varchar(32)")]
         [Required(ErrorMessage = "Name is required.")]
         public string Name { get; set; }
+
+        // Navigation property
+        public ICollection<City> Cities { get; set; }
     }
 }

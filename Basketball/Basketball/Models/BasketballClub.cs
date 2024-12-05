@@ -15,7 +15,10 @@ namespace Basketball.Models
 
         [Column(name: "CityId", TypeName = "int")]
         [Required(ErrorMessage = "CityId is required.")]
-        //[ForeignKey("City")]
+        [ForeignKey("City")]
         public int CityId { get; set; } 
+
+        // Navigation Properties
+        public City City { get; set; }
     }
 }

@@ -15,7 +15,11 @@ namespace Basketball.Models
 
         [Column(name: "CountryId", TypeName = "int")]
         [Required(ErrorMessage = "CountryId is required.")]
-        //[ForeignKey("Country")]
+        [ForeignKey("Country")]
         public int CountryId { get; set; }
+        
+        // Navigation properties
+        public Country Country { get; set; }
+        public ICollection<BasketballClub> BasketballClubs { get; set; }
     }
 }
