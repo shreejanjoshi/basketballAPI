@@ -14,7 +14,7 @@ namespace Basketball.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             // Grouping the configurations
-            modelBuilder.ApplyConfigurationsFromAssembly(typeof(DataDbContext).Assembly);
+            modelBuilder.ApplyConfigurationsFromAssembly(typeof(BasketballDbContext).Assembly);
         }
     }
 }
