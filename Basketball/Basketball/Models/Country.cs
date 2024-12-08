@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 
 namespace Basketball.Models
 {
@@ -14,6 +15,7 @@ namespace Basketball.Models
         public string Name { get; set; }
 
         // Navigation property
+        [JsonIgnore] // Prevent circular reference
         public ICollection<City> Cities { get; set; }
     }
 }

@@ -16,13 +16,20 @@ namespace Basketball.Services
         // get all
         public async Task<List<BasketballClub>> GetAllBasketballClubs()
         {
-            return await _context.BasketballClubs.Include(bc => bc.City).ToListAsync();
+            //return await _context.BasketballClubs.Include(bc => bc.City.BasketballClubs).ToListAsync();
+            return await _context.BasketballClubs
+                .Include(bc => bc.City)
+                .ThenInclude(c => c.Country)
+                .ToListAsync();
         }
 
         // get by id
         public async Task<BasketballClub> GetBasketballClub(int id)
         {
-            return await _context.BasketballClubs.Include(bc => bc.City).FirstOrDefaultAsync(bc => bc.Id == id);
+            return await _context.BasketballClubs
+                .Include(bc => bc.City)
+                .ThenInclude(c => c.Country)
+                .FirstOrDefaultAsync(bc => bc.Id == id);
         }
 
         // create

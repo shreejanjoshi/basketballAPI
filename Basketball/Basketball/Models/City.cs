@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 
 namespace Basketball.Models
 {
@@ -17,9 +18,12 @@ namespace Basketball.Models
         [Required(ErrorMessage = "CountryId is required.")]
         [ForeignKey("Country")]
         public int CountryId { get; set; }
-        
+
         // Navigation properties
+        //[JsonIgnore] // Prevent circular reference
         public Country Country { get; set; }
+
+        [JsonIgnore] // Prevent circular reference
         public ICollection<BasketballClub> BasketballClubs { get; set; }
     }
 }

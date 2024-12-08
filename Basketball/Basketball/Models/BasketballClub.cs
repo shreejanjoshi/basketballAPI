@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 
 namespace Basketball.Models
 {
@@ -16,9 +17,10 @@ namespace Basketball.Models
         [Column(name: "CityId", TypeName = "int")]
         [Required(ErrorMessage = "CityId is required.")]
         [ForeignKey("City")]
-        public int CityId { get; set; } 
+        public int CityId { get; set; }
 
         // Navigation Properties
+        //[JsonIgnore] // Prevent circular reference
         public City City { get; set; }
     }
 }
